@@ -56,7 +56,7 @@ function connect() {
         ws.send(JSON.stringify({ id: Date.now().toString(), method: 'ping', params: {} }));
         console.log('📤 Ping sent');
       }
-    }, 29000);
+    }, 30000);
   });
 
   ws.on('message', async (data) => {
