@@ -3,8 +3,9 @@
 set -e  # Exit on any error
 
 REPO="marsdevd/btc-wss-listener"
-TAG="latest"
+TAG=$(date +"%Y%m%d-%H%M%S")  # Timestamp-based tag
 FULL_TAG="$REPO:$TAG"
+LATEST_TAG="$REPO:latest"
 
 echo "📁 Navigating to project directory..."
 cd ~/btc-wss-listener
@@ -18,17 +19,19 @@ docker stop btc-wss-listener || true
 echo "🗑️ Removing old container..."
 docker rm btc-wss-listener || true
 
-echo "🐳 Building Docker image with tag $FULL_TAG..."
-docker build -t $FULL_TAG -t btc-wss-listener:latest .
+echo "🐳 Building Docker image with tags: $FULL_TAG and $LATEST_TAG..."
+docker build -t $FULL_TAG -t $LATEST_TAG .
 
 echo "🔐 Logging into Docker Hub..."
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-echo "📤 Pushing image to Docker Hub..."
+echo "📤 Pushing both tags to Docker Hub..."
 docker push $FULL_TAG
+docker push $LATEST_TAG
 
 echo "🚀 Starting container on port 3000 using $FULL_TAG..."
 docker run -d -p 3000:3000 --name btc-wss-listener --restart unless-stopped $FULL_TAG
 
-echo "✅ Deployment complete and Docker Hub updated!"
-
+echo "✅ Deployment complete! Tags pushed:"
+echo "    - $FULL_TAG"
+echo "    - $LATEST_TAG"
