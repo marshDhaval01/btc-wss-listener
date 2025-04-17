@@ -7,7 +7,7 @@ const axios = require('axios');
 
 const app = express();
 const PORT = 3000;
-const WSS_URL = 'wss://btc-testnet.nownodes.io/wss/7ead0e54-21ba-4090-a799-9fd6e47c69e2';
+const WSS_URL = 'wss://btc.nownodes.io/wss/7ead0e54-21ba-4090-a799-9fd6e47c69e2';
 
 let retryAttempts = 0;
 const maxRetries = 3;
