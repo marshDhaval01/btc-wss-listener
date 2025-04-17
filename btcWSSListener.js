@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const WebSocketManager = require('../services/WebSocketManager');
 
 const app = express();
 const PORT = 3000;
@@ -207,4 +208,17 @@ connect();
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🌐 API server running at http://localhost:${PORT}`);
 });
+
+class BTCNode {
+    constructor() {
+        this.wsManager = new WebSocketManager();
+        this.connect();
+    }
+
+    connect() {
+        this.wsManager.connect('BTC');
+    }
+
+    // Additional methods for handling BTC-specific logic
+}
 
