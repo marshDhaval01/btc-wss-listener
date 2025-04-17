@@ -30,7 +30,7 @@ docker push $FULL_TAG
 docker push $LATEST_TAG
 
 echo "🚀 Starting container on port 3000 using $FULL_TAG..."
-docker run -d -p 3000:3000 --name btc-wss-listener --restart unless-stopped $FULL_TAG
+docker run -d -p 3333:3333 --name btc-wss-listener --restart unless-stopped $FULL_TAG
 
 echo "✅ Deployment complete! Tags pushed:"
 echo "    - $FULL_TAG"
