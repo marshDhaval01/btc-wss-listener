@@ -36,6 +36,8 @@ function loadAddresses() {
 
 // === WebSocket Connection ===
 function connect() {
+  console.log(`📡 Connecting to WebSocket: ${WSS_URL}`);
+
   ws = new WebSocket(WSS_URL);
 
   ws.on('open', () => {
