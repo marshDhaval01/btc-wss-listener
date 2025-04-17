@@ -23,7 +23,7 @@ echo "🐳 Building Docker image with tags: $FULL_TAG and $LATEST_TAG..."
 docker build -t $FULL_TAG -t $LATEST_TAG .
 
 echo "🔐 Logging into Docker Hub..."
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+echo "Qwerty@123" | docker login -u "marsdevd" --password-stdin
 
 echo "📤 Pushing both tags to Docker Hub..."
 docker push $FULL_TAG
